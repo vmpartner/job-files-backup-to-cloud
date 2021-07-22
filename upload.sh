@@ -3,23 +3,26 @@
 set -e
 
 DT=$(date '+%d%m%Y%H%M%S');
-SRC=backup_${DT}.tar
+SRC=backup_${DT}.tar.gz
 
 if [ ! -d /source ]; then
+  echo "Bad source"
   return
 else
   if [ "$RCLONE_DEST" = "**None**" ]; then
     echo "ERROR: Define $RCLONE_DEST"
     return
   fi
-  echo "Start tar source"
-  tar -cvf /${SRC} /source
+  echo "Start $(date '+%d-%m-%Y %H:%M:%S')"
+  tar -zcvf /${SRC} /source
   FILESIZE=$(stat -c%s /${SRC})
   echo "Size of ${SRC} = $FILESIZE bytes."
   rclone copy /${SRC} "$RCLONE_DEST"
-  if [ "$CHECK_URL" = "**None**" ]; then
+  if [ "${CHECK_URL}" = "**None**" ]; then
     echo "INFO: Define CHECK_URL with https://healthchecks.io to monitor sync job"
   else
-    curl "$CHECK_URL"
+    echo "Curl check url: ${CHECK_URL}"
+    curl "${CHECK_URL}"
   fi
+  echo "Finish $(date '+%d-%m-%Y %H:%M:%S')"
 fi

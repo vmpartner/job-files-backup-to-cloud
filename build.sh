@@ -1,1 +1,1 @@
-docker build -t vmpartner/job-files-backup-to-cloud:v1.0.0 .
+docker build -t vmpartner/job-files-backup-to-cloud:v1.1.0 . && docker push vmpartner/job-files-backup-to-cloud:v1.1.0
