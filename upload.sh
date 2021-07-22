@@ -2,8 +2,8 @@
 
 set -e
 
-$DT=$(date '+%d%m%Y%H%M%S');
-$SRC=backup_${DT}.tar
+DT=$(date '+%d%m%Y%H%M%S');
+SRC=backup_${DT}.tar
 
 if [ ! -d /source ]; then
   return
@@ -11,6 +11,7 @@ else
   if [ "$RCLONE_DEST" = "**None**" ]; then
     echo "ERROR: Define $RCLONE_DEST"
     return
+  fi
   echo "Start tar source"
   tar -cvf /${SRC} /source
   FILESIZE=$(stat -c%s /${SRC})
