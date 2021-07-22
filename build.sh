@@ -1,0 +1,1 @@
+docker build -t vmpartner/job-files-backup-to-cloud:v1.0.0 .
