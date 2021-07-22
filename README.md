@@ -1,4 +1,4 @@
-# Backup files to cloud by cron schedule & rclone
+# Backup files to cloud
 
 Usage example
 ```bash
