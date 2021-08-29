@@ -13,7 +13,7 @@ else
   echo "Start $(date '+%d-%m-%Y %H:%M:%S')"
   FILESIZE=$(stat -c%s /${SRC})
   echo "Size of ${SRC} = $FILESIZE bytes."
-  rclone copy --verbose /source "$RCLONE_DEST"
+  rclone copy /source "$RCLONE_DEST" "$RCLONE_PARAMS"
   if [ "${CHECK_URL}" = "**None**" ]; then
     echo "INFO: Define CHECK_URL with https://healthchecks.io to monitor sync job"
   else

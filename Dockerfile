@@ -3,6 +3,7 @@ FROM alpine
 ENV RCLONE_DEST **None**
 ENV SCHEDULE **None**
 ENV CHECK_URL **None**
+ENV RCLONE_PARAMS ""
 
 RUN apk update && apk add curl
 RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && \
